@@ -15,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -91,6 +92,9 @@ dependencies {
 
     // GSON
     implementation "com.google.code.gson:gson:$gsonVersion"
+
+    // EventBus
+    implementation "org.greenrobot:eventbus:$eventBusVersion"
 
     // Koin
     implementation "org.koin:koin-core:$koinVersion"
