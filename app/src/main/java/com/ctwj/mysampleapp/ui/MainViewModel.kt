@@ -1,5 +1,6 @@
 package com.ctwj.mysampleapp.ui
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ctwj.mysampleapp.base.BaseViewModel
@@ -9,7 +10,7 @@ import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private var repo: MyRepository) : BaseViewModel() {
+class MainViewModel(private var repo: MyRepository) : BaseViewModel(application = Application()) {
 
     private var _repoList = MutableLiveData<RepoListModel>()
     val repoList: LiveData<RepoListModel>

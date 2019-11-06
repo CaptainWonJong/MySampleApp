@@ -3,13 +3,11 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.ctwj.mysampleapp">
 
-    <dist:module dist:instant="true" />
-
-    <!-- 권한 -->
+    <dist:module dist:instant="true" /> <!-- 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

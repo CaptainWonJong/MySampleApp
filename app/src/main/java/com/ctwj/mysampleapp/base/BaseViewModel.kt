@@ -1,11 +1,12 @@
 package com.ctwj.mysampleapp.base
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     private var compositeDisposable = CompositeDisposable()
 
@@ -18,5 +19,13 @@ open class BaseViewModel : ViewModel() {
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
+    }
+
+    fun removeDisposable(disposable: Disposable): Boolean {
+        return compositeDisposable.remove(disposable)
+    }
+
+    fun clearDisposables() {
+        compositeDisposable.clear()
     }
 }
