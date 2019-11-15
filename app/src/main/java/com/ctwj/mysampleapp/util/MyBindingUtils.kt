@@ -5,6 +5,6 @@ import androidx.databinding.BindingAdapter
 
 
 @BindingAdapter("android:visibility")
-fun setVisibility(view: View, visible: Boolean) {
-    view.setVisibility(if (visible) View.VISIBLE else View.GONE)
+fun View.setVisibility(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
 }

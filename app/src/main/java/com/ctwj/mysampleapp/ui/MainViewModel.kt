@@ -4,21 +4,22 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ctwj.mysampleapp.base.BaseViewModel
-import com.ctwj.mysampleapp.net.MyRepository
-import com.ctwj.mysampleapp.ui.model.RepoListModel
+import com.ctwj.mysampleapp.net.MyNetworkClient
+import com.ctwj.mysampleapp.ui.model.ImageListModel
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private var repo: MyRepository) : BaseViewModel(application = Application()) {
+class MainViewModel(private var repo: MyNetworkClient) : BaseViewModel(application = Application()) {
 
-    private var _repoList = MutableLiveData<RepoListModel>()
-    val repoList: LiveData<RepoListModel>
-        get() = _repoList
+    private var _imageList = MutableLiveData<ImageListModel>()
+    val imageList: LiveData<ImageListModel>
+        get() = _imageList
 
-    fun requestRepoList(id: String) {
+
+    fun requestRepoList() {
         addDisposable(
-            repo.getRepoList(id)
+            repo.getImageList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -34,9 +35,5 @@ class MainViewModel(private var repo: MyRepository) : BaseViewModel(application 
                     // 실패
                 })
         )
-    }
-
-    fun requestCommitList() {
-
     }
 }
