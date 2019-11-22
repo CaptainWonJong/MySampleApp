@@ -13,16 +13,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_background"
         tools:context=".main.MainActivity">
 
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="@{v -> viewModel.onTabClickEvent(2)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <include
             android:id="@+id/layout_main_tab"
             layout="@layout/layout_main_tab"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="1"
-            app:viewModel="@{viewModel}" />
+            app:model="@{viewModel}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

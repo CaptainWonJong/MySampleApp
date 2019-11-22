@@ -2,16 +2,101 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
-            name="viewModel"
+            name="model"
             type="com.ctwj.mysampleapp.ui.MainViewModel" />
     </data>
 
     <LinearLayout
-        android:background="#f0f"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_tab_height"
+            android:background="@color/main_tab_background"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="@{() -> model.onTabClickEvent(0)}" />
+
+            <TextView
+                android:id="@+id/tv_main_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_home_yellow_200_24dp"
+                android:drawablePadding="2dp"
+                android:focusable="true"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="center_horizontal"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="메인"
+                android:textColor="@color/black"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/tv_main_camera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_camera_alt_yellow_200_24dp"
+                android:drawablePadding="2dp"
+                android:focusable="true"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="center_horizontal"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="카메라"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tv_main_gallery"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_photo_yellow_200_24dp"
+                android:drawablePadding="2dp"
+                android:focusable="true"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="center_horizontal"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="갤러리"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tv_main_my_page"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_person_yellow_200_24dp"
+                android:drawablePadding="2dp"
+                android:focusable="true"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="center_horizontal"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="내정보"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

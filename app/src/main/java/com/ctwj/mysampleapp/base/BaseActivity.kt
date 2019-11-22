@@ -21,4 +21,9 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompat
     }
 
     abstract fun observeLiveData()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearDisposables()
+    }
 }
