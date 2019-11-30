@@ -24,7 +24,7 @@ var retrofitPart = module {
 }
 
 var viewModelPart = module {
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel() }
 }
 
 var MyDiModule = listOf(

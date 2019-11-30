@@ -16,9 +16,15 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutResId)
+        binding.lifecycleOwner = this
 
         observeLiveData()
     }
 
     abstract fun observeLiveData()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearDisposables()
+    }
 }
