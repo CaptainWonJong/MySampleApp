@@ -1,0 +1,23 @@
+
+ext {
+    buildToolsVersion = '29.0.2'
+    compileSdkVersion = 29
+    minSdkVersion = 21
+    targetSdkVersion = 29
+
+    // Library
+    firebaseVersion = '20.1.0'
+
+    glideVersion = '4.11.0'
+    gsonVersion = '2.8.6'
+    okHttpVersion = '4.4.0'
+    retrofitVersion = '2.7.1'
+
+    rxAndroidVersion = '3.0.0'
+    rxJavaVersion = '3.0.0'
+    rxBindingVersion = '3.1.0'
+
+    archComponentVersion = '1.1.1'
+    koinVersion = '2.0.1'
+    eventBusVersion = '3.1.1'
+}
