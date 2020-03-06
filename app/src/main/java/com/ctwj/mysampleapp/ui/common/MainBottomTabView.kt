@@ -18,6 +18,8 @@ class MainBottomTabView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val tabs = listOf(Tabs.HOME, Tabs.CAMERA, Tabs.GALLERY, Tabs.SEARCH, Tabs.MY_PAGE)
+    private var tabViews = mutableListOf<View>()
+    var onTabClickListener: (() -> View)? = null
 
     init {
         View.inflate(context, R.layout.layout_main_bottom_tab, this)
@@ -29,17 +31,29 @@ class MainBottomTabView @JvmOverloads constructor(
             View.inflate(context, R.layout.item_main_bottom_tab, null).apply {
                 tv_tab.text = resources.getString(tab.tabName)
                 iv_tab.setImageDrawable(resources.getDrawable(tab.imageRes))
-                setOnClickListener {
-                    onTabClick(tab)
-                }
             }.also {
                 (ll_tabs.layoutParams as LayoutParams).weight = 1F
                 ll_tabs.addView(it, ll_tabs.layoutParams)
+                tabViews.add(it)
             }
         }
+        tabViews.forEachIndexed { index, tabView ->
+            tabView.setOnClickListener {
+                onTabClickListener?.invoke()
+                selectTab(tabView)
+            }
+        }
+        selectTab(tabViews[0])
     }
 
-    fun onTabClick(tabs: Tabs): String = tabs.name
+    private fun selectTab(tabView: View) {
+        tabViews.forEach {
+            it.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
+        }
+        tabViews.filter { it == tabView }.map {
+            it.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
+        }
+    }
 }
 
 enum class Tabs(@DrawableRes val imageRes: Int, @StringRes val tabName: Int) {

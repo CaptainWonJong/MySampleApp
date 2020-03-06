@@ -5,7 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="main_background">#f4f4f4</color>
-    <color name="main_tab_background">#ffffff</color>
+    <color name="main_tab_unselected_background">#ffffff</color>
+    <color name="main_tab_selected_background">#afafaf</color>
 
     <color name="black">#000000</color>
 </resources>
