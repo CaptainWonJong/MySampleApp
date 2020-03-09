@@ -1,10 +1,12 @@
 package com.ctwj.mysampleapp.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.ctwj.mysampleapp.R
 import com.ctwj.mysampleapp.base.BaseActivity
 import com.ctwj.mysampleapp.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -25,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun observeLiveData() {
         viewModel.tabClick.observe(this, Observer {
-            // TODO: TabClickEvent
+            Toast.makeText(this, tab_main.selectedTabIndex, Toast.LENGTH_LONG).show()
         })
     }
 }

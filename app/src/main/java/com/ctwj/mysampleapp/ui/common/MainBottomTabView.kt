@@ -17,9 +17,12 @@ class MainBottomTabView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private val defaultTabIndex = 0
+
     private val tabs = listOf(Tabs.HOME, Tabs.CAMERA, Tabs.GALLERY, Tabs.SEARCH, Tabs.MY_PAGE)
     private var tabViews = mutableListOf<View>()
     var onTabClickListener: (() -> View)? = null
+    var selectedTabIndex = defaultTabIndex
 
     init {
         View.inflate(context, R.layout.layout_main_bottom_tab, this)
@@ -37,22 +40,31 @@ class MainBottomTabView @JvmOverloads constructor(
                 tabViews.add(it)
             }
         }
-        tabViews.forEachIndexed { index, tabView ->
+        tabViews.forEach { tabView ->
             tabView.setOnClickListener {
                 onTabClickListener?.invoke()
                 selectTab(tabView)
             }
         }
-        selectTab(tabViews[0])
+        selectTab(tabViews[defaultTabIndex])
     }
 
     private fun selectTab(tabView: View) {
-        tabViews.forEach {
-            it.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
+        tabViews.forEachIndexed { index, v ->
+            v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
+            if (v == tabView) {
+                selectedTabIndex = index
+                v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
+            }
         }
-        tabViews.filter { it == tabView }.map {
-            it.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
+    }
+
+    private fun selectTab(index: Int) {
+        tabViews.forEach { v ->
+            v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
         }
+        tabViews[index].cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
+        selectedTabIndex = index
     }
 }
 

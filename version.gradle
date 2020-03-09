@@ -6,7 +6,7 @@ ext {
     targetSdkVersion = 29
 
     // Library
-    firebaseVersion = '20.1.0'
+    firebaseVersion = '20.1.2'
 
     glideVersion = '4.11.0'
     gsonVersion = '2.8.6'
