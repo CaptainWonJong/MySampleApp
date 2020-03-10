@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/shadow_depth"
-            app:onTabClickListener="@{() -> viewModel.onTabClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

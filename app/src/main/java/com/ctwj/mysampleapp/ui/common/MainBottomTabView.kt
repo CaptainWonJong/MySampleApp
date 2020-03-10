@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
 import com.ctwj.mysampleapp.R
 import kotlinx.android.synthetic.main.item_main_bottom_tab.view.*
 import kotlinx.android.synthetic.main.layout_main_bottom_tab.view.*
@@ -17,12 +18,10 @@ class MainBottomTabView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val defaultTabIndex = 0
-
-    private val tabs = listOf(Tabs.HOME, Tabs.CAMERA, Tabs.GALLERY, Tabs.SEARCH, Tabs.MY_PAGE)
     private var tabViews = mutableListOf<View>()
-    var onTabClickListener: (() -> View)? = null
-    var selectedTabIndex = defaultTabIndex
+
+    val tabs = listOf(Tabs.HOME, Tabs.CAMERA, Tabs.GALLERY, Tabs.SEARCH, Tabs.MY_PAGE)
+    val selectedTabIndex = MutableLiveData(0)
 
     init {
         View.inflate(context, R.layout.layout_main_bottom_tab, this)
@@ -30,33 +29,18 @@ class MainBottomTabView @JvmOverloads constructor(
     }
 
     private fun initTabs() {
-        tabs.forEach { tab ->
+        tabs.forEachIndexed { index, tab ->
             View.inflate(context, R.layout.item_main_bottom_tab, null).apply {
                 tv_tab.text = resources.getString(tab.tabName)
                 iv_tab.setImageDrawable(resources.getDrawable(tab.imageRes))
+                setOnClickListener { selectTab(index) }
             }.also {
                 (ll_tabs.layoutParams as LayoutParams).weight = 1F
                 ll_tabs.addView(it, ll_tabs.layoutParams)
                 tabViews.add(it)
             }
         }
-        tabViews.forEach { tabView ->
-            tabView.setOnClickListener {
-                onTabClickListener?.invoke()
-                selectTab(tabView)
-            }
-        }
-        selectTab(tabViews[defaultTabIndex])
-    }
-
-    private fun selectTab(tabView: View) {
-        tabViews.forEachIndexed { index, v ->
-            v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
-            if (v == tabView) {
-                selectedTabIndex = index
-                v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
-            }
-        }
+        selectTab(0)
     }
 
     private fun selectTab(index: Int) {
@@ -64,7 +48,7 @@ class MainBottomTabView @JvmOverloads constructor(
             v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
         }
         tabViews[index].cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_selected_background))
-        selectedTabIndex = index
+        selectedTabIndex.value = index
     }
 }
 
