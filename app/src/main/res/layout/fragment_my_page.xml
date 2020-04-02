@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/coral_pink_00"
-    tools:context="com.ctwj.mysampleapp.ui.tab.home.HomeFragment">
+    android:background="@color/text_dark_sky_blue"
+    tools:context="com.ctwj.mysampleapp.ui.tab.mypage.MyPageFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Hello" />
 
 </FrameLayout>

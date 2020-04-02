@@ -10,5 +10,6 @@ val DiModule = listOf(
     apiPart,
     roomPart,
     resourcePart,
-    viewModelPart
+    activityViewModelPart,
+    fragmentViewModelPart
 )

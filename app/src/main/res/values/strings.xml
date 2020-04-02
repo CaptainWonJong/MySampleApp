@@ -6,4 +6,6 @@
     <string name="gallery">Gallery</string>
     <string name="search">Search</string>
     <string name="my_page">My Page</string>
+
+    <string name="msg_back_closed">Press the \'Back \' button once more to exit.</string>
 </resources>

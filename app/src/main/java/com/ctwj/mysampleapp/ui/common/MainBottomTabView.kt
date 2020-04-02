@@ -5,9 +5,12 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import com.ctwj.mysampleapp.R
+import com.ctwj.mysampleapp.ui.tab.home.HomeFragment
+import com.ctwj.mysampleapp.ui.tab.mypage.MyPageFragment
 import kotlinx.android.synthetic.main.item_main_bottom_tab.view.*
 import kotlinx.android.synthetic.main.layout_main_bottom_tab.view.*
 
@@ -20,8 +23,10 @@ class MainBottomTabView @JvmOverloads constructor(
 
     private var tabViews = mutableListOf<View>()
 
+    var initTabIndex  = 0
+
     val tabs = listOf(Tabs.HOME, Tabs.CAMERA, Tabs.GALLERY, Tabs.SEARCH, Tabs.MY_PAGE)
-    val selectedTabIndex = MutableLiveData(0)
+    val selectedTabIndex = MutableLiveData(initTabIndex)
 
     init {
         View.inflate(context, R.layout.layout_main_bottom_tab, this)
@@ -40,10 +45,10 @@ class MainBottomTabView @JvmOverloads constructor(
                 tabViews.add(it)
             }
         }
-        selectTab(0)
+        selectTab(initTabIndex)
     }
 
-    private fun selectTab(index: Int) {
+    fun selectTab(index: Int) {
         tabViews.forEach { v ->
             v.cl_tab.setBackgroundColor(resources.getColor(R.color.main_tab_unselected_background))
         }
@@ -52,10 +57,10 @@ class MainBottomTabView @JvmOverloads constructor(
     }
 }
 
-enum class Tabs(@DrawableRes val imageRes: Int, @StringRes val tabName: Int) {
-    HOME(R.drawable.ic_home_black, R.string.home),
+enum class Tabs(@DrawableRes val imageRes: Int, @StringRes val tabName: Int, @LayoutRes val layoutRes: Int? = null) {
+    HOME(R.drawable.ic_home_black, R.string.home, HomeFragment().layoutResId),
     CAMERA(R.drawable.ic_camera_black, R.string.camera),
     GALLERY(R.drawable.ic_gallery_black, R.string.gallery),
     SEARCH(R.drawable.ic_search_black, R.string.search),
-    MY_PAGE(R.drawable.ic_my_page_black, R.string.my_page)
+    MY_PAGE(R.drawable.ic_my_page_black, R.string.my_page, MyPageFragment().layoutResId)
 }

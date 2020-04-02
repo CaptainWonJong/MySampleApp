@@ -17,7 +17,7 @@
         tools:context=".main.MainActivity">
 
         <FrameLayout
-            android:id="@+id/container_main"
+            android:id="@+id/fl_fragment_container_main"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/tab_main"
@@ -30,9 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/shadow_depth"
+            app:initTabIndex="@{viewModel.initBottomTabIndex}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.ctwj.mysampleapp.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -8,13 +9,13 @@ import androidx.databinding.ViewDataBinding
 /**
  * @author CaptainWonJong@gmail.com
  */
-abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
+    @LayoutRes private val layoutResId: Int
+) : AppCompatActivity(layoutResId) {
+
 
     lateinit var binding: B
-
     abstract val viewModel: VM
-
-    abstract val layoutResId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
